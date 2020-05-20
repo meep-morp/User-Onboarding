@@ -2,11 +2,11 @@ import React from "react";
 import * as yup from "yup";
 
 const formSchema = yup.object().shape({
-    firstName: yup
+    first_name: yup
         .string()
         .trim()
         .required("First Name is required"),
-    LastName: yup
+    last_name: yup
         .string()
         .trim()
         .required("Last Name is required"),

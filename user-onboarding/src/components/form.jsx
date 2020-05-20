@@ -16,17 +16,17 @@ const Form = props => {
                 <h3>{errorMessage.name}</h3>
             </div>
 
-            <label htmlFor="firstName">First Name: </label>
+            <label htmlFor="first_name">First Name: </label>
             <input
                 type="text"
-                name="firstName"
+                name="first_name"
                 onChange={onChangeHandler}
             />
 
-            <label htmlFor="larstName">Last Name: </label>
+            <label htmlFor="last_name">Last Name: </label>
             <input
                 type="text"
-                name="lastName"
+                name="last_name"
                 onChange={onChangeHandler}
             />
 

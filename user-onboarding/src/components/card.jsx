@@ -3,6 +3,8 @@ import React from "react";
 const Card = props => {
     const { user } = props;
 
+    JSON.stringify(user);
+
     return (
         <div key={user.id} className="card">
             <img src={user.avatar} alt="profile picture" />

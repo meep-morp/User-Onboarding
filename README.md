@@ -58,8 +58,8 @@ display a list of users in our app.
   array
 - [ x ] Every time you make a `POST` request, and get that new user data back,
   update your `users` state with the new user added to the array
-- [ ] Render `users` in your app. You can use the html pre tag and
-      JSON.stringify() method to display your post request.
+- [ x ] Render `users` in your app. You can use the html pre tag and
+  JSON.stringify() method to display your post request.
 
 ## Stretch Goals
 

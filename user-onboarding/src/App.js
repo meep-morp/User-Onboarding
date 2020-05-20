@@ -46,28 +46,30 @@ function App() {
   };
 
   const onChangeHandler = event => {
+    const name = event.target.name
+    const value = event.target.value
+
     yup
-      .reach(formSchema, event.target.name)
-      .validate(event.target.value)
+      .reach(formSchema, name)
+      .validate(value)
       .then(response => {
         setErrorMessage({
           ...errorMessage,
-          [event.target.name]: "",
+          [name]: "",
         });
       })
       .catch(
         error => {
           setErrorMessage({
             ...errorMessage,
-            [event.target.name]: error.errors[0],
+            [name]: error.errors[0],
           });
         })
 
-    console.log("changing");
-
     setUser({
       ...user,
-      [event.target.name]: event.target.value,
+      [name]: value,
+      avatar: "user-onboarding/src/images/newUser.png",
     });
   };
 
@@ -76,8 +78,9 @@ function App() {
     console.log("Submitted");
 
     const newUser = {
-      firstName: user.first_name,
-      lastName: user.last_name,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      avatar: "user-onboarding/src/images/newUser.png",
       email: user.email,
       password: user.password,
     };
@@ -91,7 +94,6 @@ function App() {
 
   return (
     <div className="App">
-      {console.log(userList)}
       <Form
         errorMessage={errorMessage}
         onChangeHandler={onChangeHandler}
