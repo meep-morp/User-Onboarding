@@ -1,6 +1,5 @@
 import React from "react";
 import defaultAvatar from "./newUser.png";
-import { Link } from "react-router-dom";
 
 const Card = props => {
     const { user } = props;

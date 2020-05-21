@@ -15,12 +15,23 @@ const initialFormValues = {
   last_name: "",
   email: "",
   password: "",
+  accepted: false,
 };
+
+const initalErrorMessage = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  password: "",
+  accepted: "",
+}
 
 function App() {
   const [userList, setUserList] = useState([]);
   const [user, setUser] = useState({});
-  const [errorMessage, setErrorMessage] = useState({});
+  const [errorMessage, setErrorMessage] = useState(initalErrorMessage);
+  const [disabled, setDisabled] = useState(false);
+
 
   const getUsers = () => {
     axios
@@ -47,6 +58,9 @@ function App() {
   const onChangeHandler = event => {
     const name = event.target.name
     const value = event.target.value
+
+    console.log(errorMessage);
+    console.log(disabled);
 
     yup
       .reach(formSchema, name)
@@ -114,6 +128,14 @@ function App() {
     getUsers();
   }, [])
 
+  useEffect(() => {
+    formSchema.isValid(user)
+      .then(valid => {
+        setDisabled(!valid)
+      })
+  }, [user])
+
+
   return (
 
     <div className="App">
@@ -126,6 +148,7 @@ function App() {
         <Route path="/" exact>
           <div className="home">
             <Form
+              disabled={disabled}
               errorMessage={errorMessage}
               onChangeHandler={onChangeHandler}
               onCheckedChange={onCheckedChange}

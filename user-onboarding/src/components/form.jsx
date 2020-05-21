@@ -6,6 +6,7 @@ const Form = props => {
         errorMessage,
         onChangeHandler,
         onCheckedChange,
+        disabled,
         onSubmit,
         user,
     } = props;
@@ -69,12 +70,13 @@ const Form = props => {
                     onChange={onCheckedChange}
                 />
             </div>
-            <Link to="/users"
+            <button
+                disabled={disabled}
                 className="subButton"
                 name="button"
                 onClick={onSubmit}>
                 Sign Up
-            </Link>
+            </button>
 
         </form>
     )

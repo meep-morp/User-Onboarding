@@ -12,9 +12,9 @@ const {onSubmit} = props
                 }}>faucetbook</h1>
                 <div>
                     <label htmlFor="email">Email</label>
-                    <input name="email" type="text" />
+                    <input name="emaillog" type="text" />
                     <label htmlFor="password">Password</label>
-                    <input name="password" type="password " />
+                    <input name="passwordlog" type="password " />
                     <input 
                     type="submit" 
                     value="Login" 
