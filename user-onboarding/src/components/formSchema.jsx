@@ -1,4 +1,4 @@
-import React from "react";
+
 import * as yup from "yup";
 
 const formSchema = yup.object().shape({
@@ -20,6 +20,9 @@ const formSchema = yup.object().shape({
         .trim()
         .min(5, "Your password must be at least 5 characters long")
         .required("Password is required"),
+    accept: yup
+        .boolean()
+        .oneOf([true],"You must accept the terms of service"),
 })
 
 

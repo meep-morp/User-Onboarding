@@ -5,8 +5,9 @@ const Form = props => {
     const {
         errorMessage,
         onChangeHandler,
+        onCheckedChange,
         onSubmit,
-        formValues,
+        user,
     } = props;
 
     return (
@@ -16,8 +17,11 @@ const Form = props => {
                 <p>It's quick'n easy</p>
             </div>
             <div className="errors">
-                <h3>{errorMessage.email}</h3>
-                <h3>{errorMessage.name}</h3>
+                <p>{errorMessage.email}</p>
+                <p>{errorMessage.first_name}</p>
+                <p>{errorMessage.last_name}</p>
+                <p>{errorMessage.password}</p>
+                <p>{errorMessage.accept}</p>
             </div>
 
 
@@ -26,6 +30,7 @@ const Form = props => {
                 name="first_name"
                 onChange={onChangeHandler}
                 placeholder="First Name"
+                value={user.first_name}
             />
 
 
@@ -34,6 +39,7 @@ const Form = props => {
                 name="last_name"
                 onChange={onChangeHandler}
                 placeholder="Last Name"
+                value={user.last_name}
             />
 
 
@@ -42,6 +48,7 @@ const Form = props => {
                 name="email"
                 onChange={onChangeHandler}
                 placeholder="Email"
+                value={user.email}
             />
 
 
@@ -50,12 +57,17 @@ const Form = props => {
                 name="password"
                 onChange={onChangeHandler}
                 placeholder="Create Password"
+                value={user.password}
             />
-            <h3>Terms Of Service</h3>
+            <a href="https://www.facebook.com/terms.php" target="_blank">Terms Of Service</a>
             <div className="tos">
-                <label htmlFor="checkbox"></label>
-                <label htmlFor="accept">I accept the terms of service</label>
-                <input id="check" type="checkbox" name="accept" />
+                <label htmlFor="accept">I accept the TOS</label>
+                <input
+                    id="check"
+                    type="checkbox"
+                    name="accept"
+                    onChange={onCheckedChange}
+                />
             </div>
             <Link to="/users"
                 className="subButton"

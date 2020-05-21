@@ -20,7 +20,6 @@ const initialFormValues = {
 function App() {
   const [userList, setUserList] = useState([]);
   const [user, setUser] = useState({});
-  const [formValues, setFormValues] = useState({});
   const [errorMessage, setErrorMessage] = useState({});
 
   const getUsers = () => {
@@ -43,9 +42,6 @@ function App() {
       .catch(error => {
         console.log("Uh oh! \n" + error);
       })
-      .finally(() => {
-        setFormValues(initialFormValues);
-      });
   };
 
   const onChangeHandler = event => {
@@ -75,6 +71,28 @@ function App() {
     });
   };
 
+  const onCheckedChange = event => {
+    const { name } = event.target;
+    const { checked } = event.target;
+    yup
+      .reach(formSchema, name)
+      .validate(checked)
+      .then(response => {
+        setErrorMessage({
+          ...errorMessage,
+          [name]: "",
+        });
+      })
+      .catch(
+        error => {
+          setErrorMessage({
+            ...errorMessage,
+            [name]: error.errors[0],
+          });
+        })
+
+  }
+
   const onSubmit = event => {
     event.preventDefault();
     console.log("Submitted");
@@ -88,7 +106,8 @@ function App() {
 
     postNewUser(newUser);
 
-    // window.location = '/users';
+    setUser(initialFormValues);
+
   };
 
   useEffect(() => {
@@ -102,7 +121,6 @@ function App() {
         errorMessage={errorMessage}
         onChangeHandler={onChangeHandler}
         onSubmit={onSubmit}
-        formValues={formValues}
       />
       <Router>
         <Route path="/" exact>
@@ -110,23 +128,21 @@ function App() {
             <Form
               errorMessage={errorMessage}
               onChangeHandler={onChangeHandler}
+              onCheckedChange={onCheckedChange}
               onSubmit={onSubmit}
-              formValues={formValues}
+              user={user}
             />
             <div className="cta">
               <h2>World's Best Plumbers</h2>
-              <img src={logo} alt=""/>
+              <img src={logo} alt="" />
               <p>Hire the best plumbers around the world.</p>
               <div className="button">
-              <Link to="/users" className="userButton">Look Around the Pipeline</Link>
+                <Link to="/users" className="userButton">Look Around the Pipeline</Link>
               </div>
             </div>
           </div>
         </Route>
         <Route path="/users">
-          {/* <div className="button">
-            <Link to="/" id="homeButton">Home</Link>
-          </div> */}
           <div className="userCards">
             {userList === [] || userList === undefined ?
               <h1>Users Loading...</h1> :

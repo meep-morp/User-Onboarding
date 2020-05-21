@@ -28,6 +28,11 @@ body {
   cursor: pointer;
 }
 
+.logButton:hover {
+  background-color: #5479c2;
+  transition: 0.3s ease;
+}
+
 .logo {
   color: rgb(255, 255, 255);
   letter-spacing: 2px;
@@ -54,19 +59,12 @@ p {
   margin: 10px;
 }
 
-#homeButton {
-  padding: 8px;
-  text-decoration: none;
-  color: white;
-  background-color: #44619d;
-  font-weight: bold;
-  border: white 1px solid;
-}
 
 .tos{
   display: flex;
   font-size: 15px;
   align-items: center;
+  justify-content: center;
   text-align: end;
   width: 28%;
 }
@@ -92,12 +90,53 @@ p {
   padding: 8px;
 }
 
+form a {
+  color: #2859b9;
+}
+
 .card h2 {
   font-size: 20px;
 }
 
 .card {
-  height: 200px;
+  height: 270px;
+}
+
+.card:hover {
+  padding: 35px;
+  transition: 0.4s ease;
+}
+
+.online {
+  display: flex;
+}
+
+.shelf {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.shelf p {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.shelf button {
+  margin-left: 29%;
+  background-color: #648bda;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.status {
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  background-color: rgb(34, 200, 34);
 }
 
 .subButton {
@@ -112,6 +151,11 @@ p {
   text-decoration: none;
 }
 
+.subButton:hover {
+  background-color: rgb(30, 110, 30);
+  transition: 0.3s ease;
+}
+
 .userButton {
   background-color: #648bda;
   color: white;
@@ -119,6 +163,11 @@ p {
   text-decoration: none;
   padding: 10px;
   border-radius: 8px;
+}
+
+.userButton:hover {
+  background-color: #2859b9;
+  transition: 0.3s ease;
 }
 
 .cta {
@@ -134,9 +183,9 @@ p {
   height: 100px;
 }
 
-.errors {
+.errors p{
   color: red;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .userCards {
