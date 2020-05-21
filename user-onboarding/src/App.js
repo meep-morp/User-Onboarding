@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Form from "./components/form";
+import Nav from "./components/nav"
 import * as yup from "yup";
+import logo from "./components/faucetBook.png";
 import axios from "axios";
 import "./App.css";
 import formSchema from "./components/formSchema";
@@ -69,7 +72,6 @@ function App() {
     setUser({
       ...user,
       [name]: value,
-      avatar: "user-onboarding/src/images/newUser.png",
     });
   };
 
@@ -80,12 +82,13 @@ function App() {
     const newUser = {
       first_name: user.first_name,
       last_name: user.last_name,
-      avatar: "user-onboarding/src/images/newUser.png",
       email: user.email,
       password: user.password,
     };
 
     postNewUser(newUser);
+
+    // window.location = '/users';
   };
 
   useEffect(() => {
@@ -93,23 +96,48 @@ function App() {
   }, [])
 
   return (
+
     <div className="App">
-      <Form
+      <Nav
         errorMessage={errorMessage}
         onChangeHandler={onChangeHandler}
         onSubmit={onSubmit}
         formValues={formValues}
       />
-
-      <div className="userCard">
-        {userList === [] || userList === undefined ? <h1>Users Loading...</h1> :
-          userList.map((user) => (
-            <Card
-              user={user}
+      <Router>
+        <Route path="/" exact>
+          <div className="home">
+            <Form
+              errorMessage={errorMessage}
+              onChangeHandler={onChangeHandler}
+              onSubmit={onSubmit}
+              formValues={formValues}
             />
-          ))}
-
-      </div>
+            <div className="cta">
+              <h2>World's Best Plumbers</h2>
+              <img src={logo} alt=""/>
+              <p>Hire the best plumbers around the world.</p>
+              <div className="button">
+              <Link to="/users" className="userButton">Look Around the Pipeline</Link>
+              </div>
+            </div>
+          </div>
+        </Route>
+        <Route path="/users">
+          {/* <div className="button">
+            <Link to="/" id="homeButton">Home</Link>
+          </div> */}
+          <div className="userCards">
+            {userList === [] || userList === undefined ?
+              <h1>Users Loading...</h1> :
+              userList.map((user) => (
+                <Card
+                  user={user}
+                />
+              ))}
+          </div>
+        </Route>
+      </Router>
     </div>
   );
 }
