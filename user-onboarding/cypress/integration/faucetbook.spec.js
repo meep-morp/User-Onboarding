@@ -90,6 +90,8 @@ describe("More Tests", () => {
 
 		cy.get('input[name="accept"]').check();
 
-		cy.get(".subButton").click();
+        cy.get(".subButton").click();
+        
+        cy.visit("http://localhost:3000/users");
 	});
 });
